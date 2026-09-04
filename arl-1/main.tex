@@ -170,23 +170,7 @@ with the magnitude taken after the transform. This preserves intra-symbol phase 
 
 \RC The governing equations (1) and (2) are presented without an explicit derivation. Given that these equations form the theoretical foundation of the entire study, I would recommend that the authors include a detailed, self-contained derivation in the supplemental material.
 
-\AR A complete, self-contained derivation has been added as Sec.~I of the supplemental material.
-
-We start from the coupled equations of motion for the physical displacements $x_1$ and $x_2$, including the quadratic coupling terms $\alpha_{22}x_2^2$ and $\alpha_{12}x_1x_2$. We then introduce the slowly varying complex amplitudes $u_1$ at $\omega_D$ and $u_2$ at $\omega_D/2$ and expand the derivatives and coupling terms. Collecting the coefficients of $e^{i\omega_D t}$ and $e^{i\omega_D t/2}$ gives the amplitude equations.
-
-The equations are then non-dimensionalised using
-\begin{equation}
-	T=\omega_D t,\qquad
-	\bar{\psi}_1=\frac{\alpha_{12}u_1}{2\omega_D^2},\qquad
-	\bar{\psi}_2=\frac{\sqrt{\alpha_{12}\alpha_{22}}u_2}{2\omega_D^2}.
-\end{equation}
-After the slowly-varying-envelope reduction, we transform to the rotating frame using
-\begin{equation}
-	\tau=\bar{\gamma}_1T,\qquad
-	f=\frac{\bar{F}}{4\bar{\gamma}_1^2},\qquad
-	\gamma_{21}=\frac{\bar{\gamma}_2}{\bar{\gamma}_1},
-\end{equation}
-with the corresponding detunings $\Delta_1$ and $\Delta_2=\Delta_1/2+\kappa$. The full derivation is given in Sec.~I and leads to Eqs.~(1)--(2) of the main text.
+\AR A complete, self-contained derivation of Eqs.~(1)--(2) has been added to Sec.~I of the supplementary material.
 
 \RC The manuscript does not explicitly state whether, during the testing phase, the predicted output is fed back into the drive amplitude encoding to autonomously generate the subsequent time steps in a closed-loop (free-running) fashion, or whether the true time series is used to drive the reservoir at every time step even during testing (open-loop prediction). This distinction is important for interpreting the reported NMSE values: closed-loop generation would be expected to accumulate error over time, whereas open-loop evaluation measures only the local, single-step predictive accuracy of the readout at each time point. I would ask the authors to explicitly clarify which protocol was used.
 
