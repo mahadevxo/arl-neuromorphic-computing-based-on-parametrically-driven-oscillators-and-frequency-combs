@@ -215,7 +215,20 @@ We also evaluated the effect of the data rate in the supplementary material usin
 
 \RC \label{rev:2.4}Initiation protocol in the bistable region not quantified: The authors note that performance in the bistable region depends on initialization, but they do not report how often the 50-period constant-amplitude drive actually selects the parametric branch. A sensitivity analysis to initial conditions and a more robust startup method (e.g., chirped drive) should be considered.
 
-\AR
+\AR We have quantified the sensitivity to the initial conditions and adopted the more robust startup protocol suggested by the reviewer. The analysis is given in Sec.~VI of the supplementary material.
+
+At $\Delta_1=-4.5$, the Arnold-tongue threshold and the upper stability threshold are $f_{\mathrm{Arnold}}=7.875$ and $f_{\mathrm{upper}}=26.03$, respectively. Taking the modulation of the drive into account gives a bistable range of
+\begin{equation}
+	15.75 \leq F_{\mathrm{avg}} \leq 17.35.
+\end{equation}
+
+We tested 32 initial conditions at four amplitude scales, $\sigma\in\{0.01,0.1,1,8\}$, over 24 values of $F_{\mathrm{avg}}$ and compared constant and ramped startup protocols. Within the bistable range, at the default scale $\sigma=0.01$, the constant protocol selected the parametric branch in $0\%$ of trials, whereas the ramped protocol selected it in $100\%$ of trials. The $F_{\mathrm{avg}}$ values giving $50\%$ selection were $23.4$, $20.7$, $17.3$, and $11.5$ for $\sigma=0.01$, $0.1$, $1$, and $8$, respectively. Above $F_{\mathrm{avg}}\approx24.6$, both protocols agree because the trivial branch is no longer stable.
+
+Within the bistable range, the constant protocol therefore leaves the reservoir on the trivial branch, where $\psi_2\equiv0$ and half of the features are inactive. We have consequently adopted the ramped protocol, which starts above $f_{\mathrm{upper}}$ and then decreases adiabatically to the target $F_{\mathrm{avg}}$.
+
+At the parametric-resonance point, $F_{\mathrm{avg}}=40$ and the peak drive is $60$, well above $f_{\mathrm{upper}}=26.03$. Both protocols then converge to $|\psi_2|=8.002$, with agreement to five significant figures across 32 initial conditions and all four amplitude scales.
+
+We also corrected the startup procedure by seeding the random-number generator and repeated the reported calculations over 20 realizations. The resulting variation is small, with at most $5.6\%$ variation in total capacity and $0.96\%$ in effective dimensionality. Parametric resonance is identical across realizations, while interquartile ranges are reported for the comb regimes.
 
 \RC \label{rev:2.5}Insufficient details on regularization and numerical integration: The ridge penalty $\lambda={10}^{-3}$ is fixed without cross-validation, despite the feature dimension (2048) greatly exceeding the training sample size (~800). The choice of $\lambda$ critically affects generalization. Also, the adaptive Runge-Kutta integrator is not verified for stiff regimes (e.g., chaotic combs); the error tolerance and steps per symbol period should be reported.
 
