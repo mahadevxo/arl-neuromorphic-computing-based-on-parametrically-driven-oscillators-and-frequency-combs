@@ -144,11 +144,7 @@ Throughout the study, we use the input-proportional encoding
 \end{equation}
 so the drive ranges from $0.5F_{\mathrm{avg}}$ to $1.5F_{\mathrm{avg}}$. This is equivalent to Eq.~(3) with the modulation depth set to $\Delta F = F_{\mathrm{avg}}$:
 \begin{equation}
-F_{\mathrm{avg}}\bigl(s(n)+0.5\bigr)
-=
-F_{\mathrm{avg}}
-+
-F_{\mathrm{avg}}\bigl(s(n)-0.5\bigr).
+F_{\mathrm{avg}}\bigl(s(n)+0.5\bigr) = F_{\mathrm{avg}} + F_{\mathrm{avg}}\bigl(s(n)-0.5\bigr).
 \end{equation}
 Thus, reporting $\Delta F=0$ was inconsistent with the definition of $\Delta F$ as the modulation depth.
 
@@ -158,7 +154,19 @@ This correction also required us to revise the discussion of Fig.~2(a). Since $\
 
 \RC In constructing the reservoir feature vector, the authors include the discrete Fourier transform (DFT) of the sampled $\psi_1$ and $\psi_2$ trajectories, in addition to their time-domain trajectories. It is not entirely clear from the text whether this DFT is computed over the short trajectory sampled within a single symbol period of length $T_{\text{symbol}}$, or over the full time series spanning multiple symbol periods. I would ask the authors to explicitly clarify the exact time window over which this DFT is computed.
 
-\AR
+\AR The transform is computed over a \textbf{single symbol period}, not the full record. We have clarified this in the methodology and in Sec.~IV of the supplemental material.
+
+For each symbol $n$ and mode $j=1,2$, the transform uses the same $N_v=512$ virtual-node samples as the time-domain features,
+\begin{equation}
+	\tau_k = \frac{kT_{\mathrm{symbol}}}{N_v},
+\end{equation}
+with $T_{\mathrm{symbol}}=5.0$ in normalized time. The frequency-bin spacing is therefore $1/T_{\mathrm{symbol}}=0.2\,\tau^{-1}$. Thus, the transform does not capture timescales longer than one symbol; any memory across symbols is carried by the state $\psi$.
+
+The transform is applied to the \textbf{complex modal amplitudes} $\psi_1$ and $\psi_2$, not to their sampled powers. The spectral features are
+\begin{equation}
+	\left|\mathcal{F}[\psi_j]\right|,
+\end{equation}
+with the magnitude taken after the transform. This preserves intra-symbol phase information that is lost in $|\psi|^2$. Since $\psi_j$ is complex, its spectrum is two-sided and asymmetric, so the positive and negative frequency bins can contain different information. With $N_{\mathrm{FFT}}=N_v$, the full two-sided spectrum is retained. If the transform were instead applied to the sampled power, the signal would be real and its spectrum would be conjugate-symmetric, making the spectral features largely redundant with the time-domain features.
 
 \RC The governing equations (1) and (2) are presented without an explicit derivation. Given that these equations form the theoretical foundation of the entire study, I would recommend that the authors include a detailed, self-contained derivation in the supplemental material.
 
