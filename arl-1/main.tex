@@ -79,7 +79,7 @@ Both comb regimes are therefore shallower than parametric resonance, and both lo
 
 \AR This hypothesis is what we find. Both quantities are now measured across all four regimes in Sec~III of the supplemental material.
 
-Effective dimensionality is quantified by the participation ratio $D_{\text{eff}} = \left( \sum \lambda \right)^2 / \sum \lambda^2$ over the covariance eigenvalues of the standardized feature matrix. This requires no arbitrary variance cutoff and satisfies $1\le D_{\text{eff}} \le r$. The echo state property is measured by driving 12 replicas from different initial state conditions with an identical input sequence and fitting $\ln d(n) = \ln d(0) - \lambda n$ to the mean pairwise separation. The distance accounts for the $Z_2$ symmetry $(\psi_1,\psi_2)\rightarrow(\psi_1,-\psi_2)$ in Eqs. (1)–(2). Without this, parametric resonance could appear to violate the echo-state property because replicas may settle on opposite branches. These branches are equivalent and cannot be distinguished by the $Z_2$-invariant readout.
+Effective dimensionality is quantified by the participation ratio $D_{\text{eff}} = \left( \sum \lambda \right)^2 / \sum \lambda^2$ over the covariance eigenvalues of the standardized feature matrix. This requires no arbitrary variance cutoff and satisfies $1\le D_{\text{eff}} \le r$. The echo state property is measured by driving 12 replicas from different initial state conditions with an identical input sequence and fitting $\ln d(n) = \ln d(0) - \lambda n$ to the mean pairwise separation. The distance accounts for the $Z_2$ symmetry $(\psi_1,\psi_2)\rightarrow(\psi_1,-\psi_2)$ in Eqs.~(1) and(2) in the main text. Without this, parametric resonance could appear to violate the echo-state property because replicas may settle on opposite branches. These branches are equivalent and cannot be distinguished by the $Z_2$-invariant readout.
 
 \begin{table}[htbp]
 	\centering
@@ -170,7 +170,7 @@ with the magnitude taken after the transform. This preserves intra-symbol phase 
 
 \RC The governing equations (1) and (2) are presented without an explicit derivation. Given that these equations form the theoretical foundation of the entire study, I would recommend that the authors include a detailed, self-contained derivation in the supplemental material.
 
-\AR A complete, self-contained derivation of Eqs.~(1)--(2) has been added to Sec.~I of the supplementary material.
+\AR A complete, self-contained derivation of Eqs.~(1)--(2) in the main text has been added to Sec.~I of the supplementary material.
 
 \RC The manuscript does not explicitly state whether, during the testing phase, the predicted output is fed back into the drive amplitude encoding to autonomously generate the subsequent time steps in a closed-loop (free-running) fashion, or whether the true time series is used to drive the reservoir at every time step even during testing (open-loop prediction). This distinction is important for interpreting the reported NMSE values: closed-loop generation would be expected to accumulate error over time, whereas open-loop evaluation measures only the local, single-step predictive accuracy of the readout at each time point. I would ask the authors to explicitly clarify which protocol was used.
 
