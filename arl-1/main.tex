@@ -174,7 +174,7 @@ with the magnitude taken after the transform. This preserves intra-symbol phase 
 
 \RC The manuscript does not explicitly state whether, during the testing phase, the predicted output is fed back into the drive amplitude encoding to autonomously generate the subsequent time steps in a closed-loop (free-running) fashion, or whether the true time series is used to drive the reservoir at every time step even during testing (open-loop prediction). This distinction is important for interpreting the reported NMSE values: closed-loop generation would be expected to accumulate error over time, whereas open-loop evaluation measures only the local, single-step predictive accuracy of the readout at each time point. I would ask the authors to explicitly clarify which protocol was used.
 
-\AR
+\AR The prediction is performed in an \textbf{open-loop (teacher-forced)} setting. The true time series is used to drive the reservoir during both training and testing, and the predicted output is never fed back into the drive. Thus, the reported NMSE measures single-step prediction error and does not include error accumulation from free-running prediction. We have clarified this in the methodology.
 
 
 \section{Reviewer \#2}
