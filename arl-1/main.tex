@@ -183,52 +183,15 @@ with the magnitude taken after the transform. This preserves intra-symbol phase 
 
 \AR We have performed both analyses and report the results in Sec.~IV of the supplementary material.
 
-For the ablation study, all readouts use the same reservoir realisation, trajectories, warm-up period, and train/test split. Only the input features to the readout are changed. Each case uses its own cross-validated regularization parameter to account for differences in feature dimensionality. The results below are medians over 20 realisations:
+For the ablation study, all readouts use the same reservoir realisation, trajectory, warm-up period, and train/test split. Only the input feature block is changed. Each case uses its own cross-validated regularization parameter. The results are summarized in Table~S\textit{X} of the supplementary material.
 
-\begin{table}[htbp]
-	\centering
-	\begin{tabular}{lcccc}
-		\hline
-		\textbf{Test NMSE} & \textbf{Sub-threshold} & \textbf{Parametric resonance} & \textbf{Coherent comb} & \textbf{Chaotic comb} \\
-		\hline
-		\textbf{Time only}
-		& $1.98\times10^{-2}$
-		& $3.31\times10^{-3}$
-		& $1.03\times10^{-2}$
-		& $1.14\times10^{-1}$ \\
+At parametric resonance, combining the time and spectral features gives a $7.35\times$ lower NMSE than the time features alone and a $4.5\times$ lower NMSE than the spectral features alone. This shows that the two feature blocks provide complementary information.
 
-		\textbf{Spectral only}
-		& $4.09\times10^{-2}$
-		& $2.04\times10^{-3}$
-		& $2.64\times10^{-2}$
-		& $1.25\times10^{-1}$ \\
+We also computed the principal angles between the leading $20$ principal directions of the two standardized feature blocks. At parametric resonance, the canonical correlations range from $1.000$ to $0.001$, with a median of $0.641$, showing that the two feature spaces overlap but are not identical. The full results are given in Fig.~S\textit{X} of the supplementary material.
 
-		\textbf{Both}
-		& \textbf{$1.95\times10^{-2}$}
-		& \textbf{$4.51\times10^{-4}$}
-		& \textbf{$1.26\times10^{-2}$}
-		& \textbf{$6.39\times10^{-2}$} \\
-		\hline
-		\textbf{Improvement}
-		& \textbf{No}
-		& \textbf{Yes}
-		& \textbf{No}
-		& \textbf{Yes} \\
-		\hline
-	\end{tabular}
-\end{table}
+The sub-threshold case provides an important contrast. Its median canonical correlation is only $0.040$, but combining the two blocks gives almost no improvement ($1.02\times$), because $\psi_2 \equiv 0$ makes half of the features inactive. Thus, the two analyses together show that the spectral features provide useful additional information in the operating regime.
 
-At parametric resonance, combining the time and spectral features reduces the NMSE by $7.35\times$ compared with the time features alone and by $4.5\times$ compared with the spectral features alone. This shows that the two feature sets provide complementary information.
-
-We also compared the two feature spaces using the principal angles between their leading $k=20$ principal directions. At parametric resonance, the canonical correlations range from $1.000$ to $0.001$, with a median of $0.641$. Thus, the two subspaces overlap but are not identical. If the spectral features were only a re-expression of the time-domain features, all twenty correlations would be close to one.
-
-The sub-threshold case provides an important comparison. Here, $\psi_2\equiv0$, so half of the features are inactive and the median canonical correlation is only $0.040$. However, combining the two feature sets gives almost no improvement, with only a $1.02\times$ change. This shows that different feature spaces do not necessarily provide useful additional information. Together, the ablation and rank analyses show that the spectral features provide useful information specifically in the regimes where the reservoir performs computation.
-
-The overfitting concern is addressed in our response to Comment~5 (\ref{rev:2.5}). The relevant quantity is the effective number of degrees of freedom,
-\begin{equation}
-	\nu = \sum_i \frac{s_i^2}{s_i^2+\lambda},
-\end{equation}
-which is $12.4$, $30.4$, $225.5$, and $164.5$ at the cross-validated optima for the sub-threshold, parametric-resonance, coherent-comb, and chaotic-comb regimes, respectively, compared with 750 training samples.
+The effective degrees of freedom and the effect of regularization are discussed in Sec.~VII of the supplementary material.
 
 \RC \label{rev:2.2}No quantitative criterion for distinguishing coherent vs. chaotic combs: The boundary between these regimes is not defined. A metric (e.g., phase diffusion coefficient, spectral line width, or Lyapunov exponent) must be specified, and the exact parameter values for the chaotic-comb examples in Fig. 1(k-o) must be provided in the caption.
 
