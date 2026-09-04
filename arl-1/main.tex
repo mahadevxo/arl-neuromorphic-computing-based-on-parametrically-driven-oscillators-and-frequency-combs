@@ -1,0 +1,122 @@
+% An example for the ar2rc document class.
+% Copyright (C) 2017 Martin Schroen
+% Modifications Copyright (C) 2020 Kaishuo Zhang
+%
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+\documentclass{ar2rc}
+
+\title{Neuromorphic Computing Based on Parametrically-Driven \\Oscillators and Frequency Combs}
+\author{Mahadev Sunil Kumar and Adarsh Ganesan}
+\journal{Applied Physics Letters}
+%\doi{12345}
+
+\begin{document}
+
+\maketitle
+
+Dear Reviewers,
+
+Thank you for the reviews. The comments led us to add several diagnostics that we agree the original submission lacked, and these have materially sharpened the mechanistic account of why the parametric resonance regime outperforms the comb regimes. All required corrections have been made to the manuscript and the supplemental material. Additions to the main text are marked in red; the supplemental material has been extended with eight new sections.
+
+Section numbers below refer to the revised supplemental material.
+
+\newpage
+
+\section{Reviewer \#1}
+\RC The manuscript adopts one-step-ahead prediction of chaotic time series as the benchmark for reservoir performance. While this is a widely used and reasonable choice, it conflates several underlying computational properties, such as short-term memory and nonlinear transformation capability, into a single aggregate metric (NMSE), making it difficult to disentangle which specific computational resource is responsible for the observed differences between regimes. I would recommend that the authors additionally evaluate the information processing capacity (IPC) proposed by Dambre et al. [Sci. Rep. 2, 514 (2012)]. By decomposing reservoir capacity into contributions from different nonlinear degrees and delays, this approach would allow the authors to identify precisely which computational capabilities are enhanced or lacking in the parametric resonance regime compared to the frequency-comb regime.
+
+\AR We agree, and we have carried out full IPC decomposition. The results are in Sec.~II of the supplemental material and are summarized in the second paragraph of page 3 of the main text.
+
+The decomposition requires an i.i.d input, since Legenfre basis is orthogonal only under that measure and driving with Mackey-Glass would violate the orthogonality the method depends on. Therefore, we used $u\left(n\right)\sim\mathcal{U}\left[-1,1\right]$, i.i.d., with the drive built from (u+1)/2 and the targets taken from u directly. The basis caps total degrees at 11, delays at 25, and at most three distinct delays per target. This gives 447,161 basis functions. The estimator was validated against a 20-node linear delay line, where it returns a total of 20.175 against a measured rank of 20 (0.87\% relative error), with 20.000 recovered at degree one.
+
+\begin{table}[htbp]
+	\centering
+	\label{tab:capacity_comparison}
+	\begin{tabular}{lccc}
+		\hline
+		& Parametric resonance & Coherent comb & Chaotic comb \\
+		\hline
+		Total capacity
+		& \textbf{160.32}
+		& 18.0 (16.9--18.2)
+		& 5.54 (5.49--5.81) \\
+
+		Fraction of the bound $r = 256$
+		& \textbf{62.6\%}
+		& 7.0\%
+		& 2.2\% \\
+
+		Capacity per available dimension
+		& \textbf{0.626}
+		& 0.070
+		& 0.022 \\
+
+		Ratio to parametric resonance
+		& --
+		& 8.9$\times$ lower
+		& 29$\times$ lower \\
+		\hline
+	\end{tabular}
+	\caption{Comparison of nonlinear memory capacity across the three regimes.}
+\end{table}
+The regimes differ in total capacity as well as where that capacity sits. At parametric resonance the per-degree contribution rises  across the whole basis: 2.07, 3.29, 4.88, 6.92, 9.28, 12.21, 15.60, 19.35, 23.75, 28.82, 34.13. It is still rising at degree 11, the highest degree scanned. The two comb regimes behave differently from each other: the coherent comb neither deepens nor vanishes, staying flat between 1.5 and 1.8 at every degree, while the chaotic comb decays steadily and falls to within a factor of two of the chance level beyond degree three.
+
+
+
+\RC To better understand why the frequency-comb regime underperforms relative to naive expectations, I would suggest that the authors examine two additional diagnostic quantities: the echo-state property (ESP) and the effective dimensionality of the reservoir state. The ESP can be quantified by measuring how quickly trajectories of the reservoir, initialized from different initial conditions but driven by the same input sequence, converge onto a common trajectory; faster convergence indicates a strong echo-state property. The effective dimensionality, on the other hand, characterizes how many independent degrees of freedom are actually being used within the 2048-dimensional reservoir state and can be measured by principal component analysis. In general, good computational performance requires both a strong echo-state property and sufficiently high dimensionality, but these two quantities are known to trade off against each other, so an appropriate balance between them is essential. I expect the frequency-comb regime to exhibit higher effective dimensionality than the parametric resonance regime. However, given its inferior computational performance, I would hypothesize that this comes at the cost of a degraded echo-state property. I recommend that the authors directly measure both quantities across the sub-threshold, parametric resonance, and comb regimes, as this would provide a clear mechanistic account of the observed performance differences.
+
+\AR
+
+\RC In Fig. 2(a) (and also in the caption of Fig. 1), the modulation depth is stated as ΔF = 0. However, according to Eq. (3), $f\left(n\right)=F_{avg}+\Delta F\times\left(s\left(n\right)-0.5\right)$, setting $\Delta F = 0$ renders the drive amplitude f(n) completely independent of the input symbol s(n). Under this condition, no information about the input time series would be transmitted into the reservoir via the drive amplitude, which would make the subsequent prediction task meaningless. Since the manuscript nonetheless reports successful prediction, I suspect this is a typographical error.
+
+\AR
+
+\RC In constructing the reservoir feature vector, the authors include the discrete Fourier transform (DFT) of the sampled $\psi_1$ and $\psi_2$ trajectories, in addition to their time-domain trajectories. It is not entirely clear from the text whether this DFT is computed over the short trajectory sampled within a single symbol period of length $T_{\text{symbol}}$, or over the full time series spanning multiple symbol periods. I would ask the authors to explicitly clarify the exact time window over which this DFT is computed.
+
+\AR
+
+\RC The governing equations (1) and (2) are presented without an explicit derivation. Given that these equations form the theoretical foundation of the entire study, I would recommend that the authors include a detailed, self-contained derivation in the supplemental material.
+
+\AR
+
+\RC The manuscript does not explicitly state whether, during the testing phase, the predicted output is fed back into the drive amplitude encoding to autonomously generate the subsequent time steps in a closed-loop (free-running) fashion, or whether the true time series is used to drive the reservoir at every time step even during testing (open-loop prediction). This distinction is important for interpreting the reported NMSE values: closed-loop generation would be expected to accumulate error over time, whereas open-loop evaluation measures only the local, single-step predictive accuracy of the readout at each time point. I would ask the authors to explicitly clarify which protocol was used.
+
+\AR
+
+
+\section{Reviewer \#2}
+
+\RC 7.	Redundancy in feature extraction: The feature vector combines time-domain samples (1024 dimensions) and Fourier magnitudes (1024 dimensions) from the same symbol period trajectories. Unless the sampling rate violates Nyquist, the spectral features introduce little independent information. The authors should demonstrate their added value via ablation studies or rank analysis; otherwise, the high dimensionality (2048) risks overfitting despite ridge regularization.
+
+\AR
+
+\RC 8.	No quantitative criterion for distinguishing coherent vs. chaotic combs: The boundary between these regimes is not defined. A metric (e.g., phase diffusion coefficient, spectral line width, or Lyapunov exponent) must be specified, and the exact parameter values for the chaotic-comb examples in Fig. 1(k-o) must be provided in the caption.
+
+\AR
+
+\RC 9.	Data rate not rescaled to the intrinsic timescales of benchmark systems: The Mackey-Glass, Rössler, and Lorenz systems have widely different characteristic times (nearly an order of magnitude), yet all are fed at the same rate of 2424 samples/s. This leads to vastly different effective memory capacities across tasks. The authors should either rescale the symbol duration for each system or explicitly justify the single rate and discuss its impact.
+
+\AR
+
+\RC 10.	Initiation protocol in the bistable region not quantified: The authors note that performance in the bistable region depends on initialization, but they do not report how often the 50-period constant-amplitude drive actually selects the parametric branch. A sensitivity analysis to initial conditions and a more robust startup method (e.g., chirped drive) should be considered.
+
+\AR
+
+\RC Insufficient details on regularization and numerical integration: The ridge penalty $\lambda={10}^{-3}$ is fixed without cross-validation, despite the feature dimension (2048) greatly exceeding the training sample size (~800). The choice of $\lambda$ critically affects generalization. Also, the adaptive Runge-Kutta integrator is not verified for stiff regimes (e.g., chaotic combs); the error tolerance and steps per symbol period should be reported.
+
+\AR
+
+
+\end{document}
