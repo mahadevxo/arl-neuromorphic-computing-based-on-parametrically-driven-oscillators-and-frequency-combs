@@ -109,7 +109,7 @@ innerleftmargin=0.6em,innerrightmargin=0.6em]{quote}
 {\Large\bf \lettertitle}\\[1em]
 {\LARGE \@title}\\[1em]
 {\@author}\\
-{\it \@journal, }\texttt{\@doi}\\
+{\it \@journal }\texttt{\@doi}\\
 \hrule
 \hfill {\bfseries RC:} \textbf{\textit{Reviewers' Comment}},\(\quad\) AR: Authors' Response, \(\quad\square\) Manuscript Text
 }
