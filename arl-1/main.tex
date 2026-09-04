@@ -136,7 +136,25 @@ Between parametric resonance and the coherent comb, $D_{\mathrm{eff}}$ increases
 
 \RC In Fig. 2(a) (and also in the caption of Fig. 1), the modulation depth is stated as ΔF = 0. However, according to Eq. (3), $f\left(n\right)=F_{avg}+\Delta F\times\left(s\left(n\right)-0.5\right)$, setting $\Delta F = 0$ renders the drive amplitude f(n) completely independent of the input symbol s(n). Under this condition, no information about the input time series would be transmitted into the reservoir via the drive amplitude, which would make the subsequent prediction task meaningless. Since the manuscript nonetheless reports successful prediction, I suspect this is a typographical error.
 
-\AR
+\AR The reviewer is correct that the label was wrong. We thank them for pointing this out. It was a mislabelling, not a typographical error. The input was always included in the drive.
+
+Throughout the study, we use the input-proportional encoding
+\[
+f(n) = F_{\mathrm{avg}}\bigl(s(n)+0.5\bigr),
+\]
+so the drive ranges from $0.5F_{\mathrm{avg}}$ to $1.5F_{\mathrm{avg}}$. This is equivalent to Eq.~(3) with the modulation depth set to $\Delta F = F_{\mathrm{avg}}$:
+\[
+F_{\mathrm{avg}}\bigl(s(n)+0.5\bigr)
+=
+F_{\mathrm{avg}}
++
+F_{\mathrm{avg}}\bigl(s(n)-0.5\bigr).
+\]
+Thus, reporting $\Delta F=0$ was inconsistent with the definition of $\Delta F$ as the modulation depth.
+
+We have corrected this throughout the manuscript. All occurrences of ``$\Delta F=0$'' have been changed to ``$\Delta F=F_{\mathrm{avg}}$''. This includes the caption of Fig.~1, the three panels of Fig.~2, and the parameter notes for Figs.~3--5. The methodology now also states that $\Delta F=F_{\mathrm{avg}}$ is the default encoding unless otherwise specified.
+
+This correction also required us to revise the discussion of Fig.~2(a). Since $\Delta F=F_{\mathrm{avg}}$ varies with $F_{\mathrm{avg}}$ and reaches 50 along the horizontal axis, panel (a) does not represent the smallest modulation depth. Instead, its modulation depth increases with $F_{\mathrm{avg}}$. We have therefore removed the statement that $\Delta F$ increases from zero and clarified that using a fixed $\Delta F$ removes this dependence on $F_{\mathrm{avg}}$, producing a more uniform low-NMSE region.
 
 \RC In constructing the reservoir feature vector, the authors include the discrete Fourier transform (DFT) of the sampled $\psi_1$ and $\psi_2$ trajectories, in addition to their time-domain trajectories. It is not entirely clear from the text whether this DFT is computed over the short trajectory sampled within a single symbol period of length $T_{\text{symbol}}$, or over the full time series spanning multiple symbol periods. I would ask the authors to explicitly clarify the exact time window over which this DFT is computed.
 
