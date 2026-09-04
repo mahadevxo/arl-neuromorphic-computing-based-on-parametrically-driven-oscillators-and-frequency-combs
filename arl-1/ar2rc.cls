@@ -102,7 +102,7 @@ innerleftmargin=0.6em,innerrightmargin=0.6em]{quote}
 \let\@journal\@empty
 \let\@doi\@empty
 \newcommand{\journal}[1]{\gdef\@journal{#1}}
-%\newcommand{\doi}[1]{\gdef\@doi{#1}}
+\newcommand{\doi}[1]{\gdef\@doi{#1}}
 
 % Make title and legend
 \renewcommand\maketitle{
