@@ -244,7 +244,7 @@ show that the effect of the fixed penalty depends strongly on the regime. At $\l
 
 Importantly, the main result is unchanged. At their respective optima, the coherent comb still has a $28\times$ higher NMSE than parametric resonance. Across the full parameter sweep with per-point cross-validation, parametric resonance also outperforms the coherent comb by $8.0\times$. We therefore use cross-validation for the reported results.
 
-\textbf{Numerical integration.} Eqs.~(1)--(2) are integrated as a real four-component system using an adaptive fifth-order Runge--Kutta method with relative tolerance $10^{-8}$ and absolute tolerance $10^{-10}$. The terminal state is carried forward between symbols. Since the step size is adaptive, we report the number of right-hand-side evaluations per symbol in Sec.~VIII of the supplementary material.
+\textbf{Numerical integration.} Eqs.~(1)--(2) in the main text are integrated as a real four-component system using an adaptive fifth-order Runge--Kutta method with relative tolerance $10^{-8}$ and absolute tolerance $10^{-10}$. The terminal state is carried forward between symbols. Since the step size is adaptive, we report the number of right-hand-side evaluations per symbol in Sec.~VIII of the supplementary material.
 
 We also compared the explicit method with DOP853, Radau, and BDF at the same tolerances. The implicit methods were between $2.28\times$ and $3.93\times$ more expensive, including for the chaotic comb. These results indicate that the system is not stiff in the regimes studied and that the adaptive explicit method is appropriate.
 
