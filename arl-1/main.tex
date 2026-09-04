@@ -179,19 +179,60 @@ with the magnitude taken after the transform. This preserves intra-symbol phase 
 
 \section{Reviewer \#2}
 
-\RC 7.	Redundancy in feature extraction: The feature vector combines time-domain samples (1024 dimensions) and Fourier magnitudes (1024 dimensions) from the same symbol period trajectories. Unless the sampling rate violates Nyquist, the spectral features introduce little independent information. The authors should demonstrate their added value via ablation studies or rank analysis; otherwise, the high dimensionality (2048) risks overfitting despite ridge regularization.
+\RC Redundancy in feature extraction: The feature vector combines time-domain samples (1024 dimensions) and Fourier magnitudes (1024 dimensions) from the same symbol period trajectories. Unless the sampling rate violates Nyquist, the spectral features introduce little independent information. The authors should demonstrate their added value via ablation studies or rank analysis; otherwise, the high dimensionality (2048) risks overfitting despite ridge regularization.
+
+\AR We have performed both analyses and report the results in Sec.~IV of the supplementary material.
+
+For the ablation study, all readouts use the same reservoir realisation, trajectories, warm-up period, and train/test split. Only the input features to the readout are changed. Each case uses its own cross-validated regularization parameter to account for differences in feature dimensionality. The results below are medians over 20 realisations:
+
+\begin{table}[htbp]
+	\centering
+	\begin{tabular}{lcccc}
+		\hline
+		Test NMSE & Sub-threshold & Parametric resonance & Coherent comb & Chaotic comb \\
+		\hline
+		Time only (T)
+		& $1.98\times10^{-2}$
+		& $3.31\times10^{-3}$
+		& $1.03\times10^{-2}$
+		& $1.14\times10^{-1}$ \\
+
+		Spectral only (S)
+		& $4.09\times10^{-2}$
+		& $2.04\times10^{-3}$
+		& $2.64\times10^{-2}$
+		& $1.25\times10^{-1}$ \\
+
+		\textbf{Both}
+		& \textbf{$1.95\times10^{-2}$}
+		& \textbf{$4.51\times10^{-4}$}
+		& \textbf{$1.26\times10^{-2}$}
+		& \textbf{$6.39\times10^{-2}$} \\
+		\hline
+	\end{tabular}
+\end{table}
+
+At parametric resonance, combining the time and spectral features reduces the NMSE by $7.35\times$ compared with the time features alone and by $4.5\times$ compared with the spectral features alone. This shows that the two feature sets provide complementary information.
+
+We also compared the two feature spaces using the principal angles between their leading $k=20$ principal directions. At parametric resonance, the canonical correlations range from $1.000$ to $0.001$, with a median of $0.641$. Thus, the two subspaces overlap but are not identical. If the spectral features were only a re-expression of the time-domain features, all twenty correlations would be close to one.
+
+The sub-threshold case provides an important comparison. Here, $\psi_2\equiv0$, so half of the features are inactive and the median canonical correlation is only $0.040$. However, combining the two feature sets gives almost no improvement, with only a $1.02\times$ change. This shows that different feature spaces do not necessarily provide useful additional information. Together, the ablation and rank analyses show that the spectral features provide useful information specifically in the regimes where the reservoir performs computation.
+
+The overfitting concern is addressed in our response to Comment~5. The relevant quantity is the effective number of degrees of freedom,
+\begin{equation}
+	\nu = \sum_i \frac{s_i^2}{s_i^2+\lambda},
+\end{equation}
+which is $12.4$, $30.4$, $225.5$, and $164.5$ at the cross-validated optima for the sub-threshold, parametric-resonance, coherent-comb, and chaotic-comb regimes, respectively, compared with 750 training samples.
+
+\RC No quantitative criterion for distinguishing coherent vs. chaotic combs: The boundary between these regimes is not defined. A metric (e.g., phase diffusion coefficient, spectral line width, or Lyapunov exponent) must be specified, and the exact parameter values for the chaotic-comb examples in Fig. 1(k-o) must be provided in the caption.
 
 \AR
 
-\RC 8.	No quantitative criterion for distinguishing coherent vs. chaotic combs: The boundary between these regimes is not defined. A metric (e.g., phase diffusion coefficient, spectral line width, or Lyapunov exponent) must be specified, and the exact parameter values for the chaotic-comb examples in Fig. 1(k-o) must be provided in the caption.
+\RC Data rate not rescaled to the intrinsic timescales of benchmark systems: The Mackey-Glass, Rössler, and Lorenz systems have widely different characteristic times (nearly an order of magnitude), yet all are fed at the same rate of 2424 samples/s. This leads to vastly different effective memory capacities across tasks. The authors should either rescale the symbol duration for each system or explicitly justify the single rate and discuss its impact.
 
 \AR
 
-\RC 9.	Data rate not rescaled to the intrinsic timescales of benchmark systems: The Mackey-Glass, Rössler, and Lorenz systems have widely different characteristic times (nearly an order of magnitude), yet all are fed at the same rate of 2424 samples/s. This leads to vastly different effective memory capacities across tasks. The authors should either rescale the symbol duration for each system or explicitly justify the single rate and discuss its impact.
-
-\AR
-
-\RC 10.	Initiation protocol in the bistable region not quantified: The authors note that performance in the bistable region depends on initialization, but they do not report how often the 50-period constant-amplitude drive actually selects the parametric branch. A sensitivity analysis to initial conditions and a more robust startup method (e.g., chirped drive) should be considered.
+\RC Initiation protocol in the bistable region not quantified: The authors note that performance in the bistable region depends on initialization, but they do not report how often the 50-period constant-amplitude drive actually selects the parametric branch. A sensitivity analysis to initial conditions and a more robust startup method (e.g., chirped drive) should be considered.
 
 \AR
 
