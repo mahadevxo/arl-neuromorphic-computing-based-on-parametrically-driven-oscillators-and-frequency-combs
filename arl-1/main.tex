@@ -207,7 +207,11 @@ The parameters for the operating points in Fig.~1 in the main text are now given
 
 \RC \label{rev:2.3}Data rate not rescaled to the intrinsic timescales of benchmark systems: The Mackey-Glass, Rössler, and Lorenz systems have widely different characteristic times (nearly an order of magnitude), yet all are fed at the same rate of 2424 samples/s. This leads to vastly different effective memory capacities across tasks. The authors should either rescale the symbol duration for each system or explicitly justify the single rate and discuss its impact.
 
-\AR
+\AR The rescaling requested by the reviewer was already applied, but this was not clear from our description. We have clarified this in the revised manuscript.
+
+The three benchmarks are subsampled before being used as inputs, giving 17.0, 7.5, and 12.0 samples per characteristic time for Mackey--Glass, Lorenz, and Rössler, respectively. Thus, the difference in effective sampling rates is $2.3\times$, rather than the much larger difference between their raw timescales. The common drive rate therefore follows from this pre-normalization.
+
+We also evaluated the effect of the data rate in the supplementary material using sweeps over the $(F_{\mathrm{avg}},\Delta_1)$ plane at low, intermediate, and high rates. The results show that performance depends on the match between the input timescale and the reservoir dynamics. At low rates, the dynamics settle between inputs and memory is lost. At high rates, the system does not respond fully within one symbol. The best performance occurs at intermediate rates, where the dynamics from successive inputs overlap. This behavior is consistent across all three benchmarks and for both ridge and LASSO readouts.
 
 \RC \label{rev:2.4}Initiation protocol in the bistable region not quantified: The authors note that performance in the bistable region depends on initialization, but they do not report how often the 50-period constant-amplitude drive actually selects the parametric branch. A sensitivity analysis to initial conditions and a more robust startup method (e.g., chirped drive) should be considered.
 
