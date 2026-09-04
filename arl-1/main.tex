@@ -81,7 +81,52 @@ Both comb regimes are therefore shallower than parametric resonance, and both lo
 
 Effective dimensionality is quantified by the participation ratio $D_{\text{eff}} = \left( \sum \lambda \right)^2 / \sum \lambda^2$ over the covariance eigenvalues of the standardized feature matrix. This requires no arbitrary variance cutoff and satisfies $1\le D_{\text{eff}} \le r$. The echo state property is measured by driving 12 replicas from different initial state conditions with an identical input sequence and fitting $\ln d(n) = \ln d(0) - \lambda n$ to the mean pairwise separation. The distance accounts for the $Z_2$ symmetry $(\psi_1,\psi_2)\rightarrow(\psi_1,-\psi_2)$ in Eqs. (1)–(2). Without this, parametric resonance could appear to violate the echo-state property because replicas may settle on opposite branches. These branches are equivalent and cannot be distinguished by the $Z_2$-invariant readout.
 
+\begin{table}[htbp]
+	\centering
+	\caption{Effective dimensionality, variance concentration, active features, and convergence across the four dynamical regimes.}
+	\label{tab:dimensionality_convergence}
+	\begin{tabular}{lcccc}
+		\hline
+		& Sub-threshold & Parametric resonance & Coherent comb & Chaotic comb \\
+		\hline
+		$D_{\mathrm{eff}}$
+		& 1.915
+		& 2.770
+		& \textbf{7.147}
+		& \textbf{7.403} \\
 
+		Components for 95\% / 99\% variance
+		& 2 / 2
+		& 8 / 11
+		& 30 / 89
+		& 54 / 179 \\
+
+		Leading component, variance fraction
+		& 0.607
+		& 0.565
+		& 0.310
+		& 0.307 \\
+
+		Active features (of 2048)
+		& \textbf{1024}
+		& 2048
+		& 2048
+		& 2048 \\
+
+		Convergence rate $\lambda$ (per symbol)
+		& 4.99
+		& \textbf{4.03}
+		& $2.5\times10^{-4}$
+		& $2.1\times10^{-4}$ \\
+
+		Exponential fit $R^2$
+		& 1.000
+		& 0.974
+		& 0.011
+		& 0.004 \\
+		\hline
+	\end{tabular}
+\end{table}
 
 
 
