@@ -28,22 +28,21 @@
 
 Dear Reviewers,
 
-Thank you for the reviews. The comments led us to add several diagnostics that we agree the original submission lacked, and these have materially sharpened the mechanistic account of why the parametric resonance regime outperforms the comb regimes. All required corrections have been made to the manuscript and the supplemental material. Additions to the main text are marked in red; the supplemental material has been extended with eight new sections.
+Thank you for the reviews. The comments led us to add several diagnostics that we agree the original submission lacked, and these have materially sharpened the mechanistic account of why the parametric resonance regime outperforms the comb regimes. All required corrections have been made to the manuscript and the supplementary material. Additions to the main text are marked in red; the supplementary material has been extended with eight new sections.
 
-Section numbers below refer to the revised supplemental material.
+Section numbers below refer to the revised supplementary material.
 
 \newpage
 
 \section{Reviewer \#1}
 \RC \label{rev:1.1}The manuscript adopts one-step-ahead prediction of chaotic time series as the benchmark for reservoir performance. While this is a widely used and reasonable choice, it conflates several underlying computational properties, such as short-term memory and nonlinear transformation capability, into a single aggregate metric (NMSE), making it difficult to disentangle which specific computational resource is responsible for the observed differences between regimes. I would recommend that the authors additionally evaluate the information processing capacity (IPC) proposed by Dambre et al. [Sci. Rep. 2, 514 (2012)]. By decomposing reservoir capacity into contributions from different nonlinear degrees and delays, this approach would allow the authors to identify precisely which computational capabilities are enhanced or lacking in the parametric resonance regime compared to the frequency-comb regime.
 
-\AR We agree, and we have carried out full IPC decomposition. The results are in Sec.~II of the supplemental material and are summarized in the second paragraph of page 3 of the main text.
+\AR We agree, and we have carried out a full IPC decomposition. The results are in Sec.~II of the supplementary material and are summarized in the second paragraph of page 3 of the main text.
 
-The decomposition requires an i.i.d input, since Legenfre basis is orthogonal only under that measure and driving with Mackey-Glass would violate the orthogonality the method depends on. Therefore, we used $u\left(n\right)\sim\mathcal{U}\left[-1,1\right]$, i.i.d., with the drive built from (u+1)/2 and the targets taken from u directly. The basis caps total degrees at 11, delays at 25, and at most three distinct delays per target. This gives 447,161 basis functions. The estimator was validated against a 20-node linear delay line, where it returns a total of 20.175 against a measured rank of 20 (0.87\% relative error), with 20.000 recovered at degree one.
+The decomposition requires an i.i.d. input, since the Legendre basis is orthogonal only under that measure and driving with Mackey-Glass would violate the orthogonality the method depends on. Therefore, we used $u\left(n\right)\sim\mathcal{U}\left[-1,1\right]$, i.i.d., with the drive built from $(u+1)/2$ and the targets taken from $u$ directly. The basis caps total degree at 11, delay at 25, and at most three distinct delays per target. This gives 447,161 basis functions. Each capacity is bias-corrected by the adjusted-$R^2$ shrinkage and tested against a surrogate null obtained by permuting the target in time, with the threshold set at the 99.9th percentile. Because that threshold is a percentile, one target in $10^{3}$ clears it on estimator noise alone; retention is therefore quoted relative to this false-positive expectation. The estimator was validated against a 20-node linear delay line, where it returns a total of 20.175 against a measured rank of 20 (0.87\% relative error), with 20.000 recovered at degree one.
 
 \begin{table}[htbp]
 	\centering
-	\label{tab:capacity_comparison}
 	\begin{tabular}{lccc}
 		\hline
 		& Parametric resonance & Coherent comb & Chaotic comb \\
@@ -69,17 +68,18 @@ The decomposition requires an i.i.d input, since Legenfre basis is orthogonal on
 		& 29$\times$ lower \\
 		\hline
 	\end{tabular}
-	\caption{Comparison of nonlinear memory capacity across the three regimes.}
+	\caption{Information processing capacity across the three regimes.}
+	\label{tab:capacity_comparison}
 \end{table}
-The regimes differ in total capacity as well as where that capacity sits. At parametric resonance the per-degree contribution rises  across the whole basis: 2.07, 3.29, 4.88, 6.92, 9.28, 12.21, 15.60, 19.35, 23.75, 28.82, 34.13. It is still rising at degree 11, the highest degree scanned. The two comb regimes behave differently from each other. The coherent comb neither deepens nor vanishes, staying flat between 1.5 and 1.8 at every degree, while the chaotic comb decays steadily and falls to within a factor of two of the false-positive expectation beyond degree three.
+The regimes differ in total capacity as well as where that capacity sits. At parametric resonance the per-degree contribution rises across the whole basis: 2.07, 3.29, 4.88, 6.92, 9.28, 12.21, 15.60, 19.35, 23.75, 28.82, 34.13. It is still rising at degree 11, the highest degree scanned. The two comb regimes behave differently from each other. The coherent comb neither deepens nor vanishes, staying flat between 1.5 and 1.8 at every degree, while the chaotic comb decays steadily and falls to within a factor of two of the false-positive expectation beyond degree three.
 
 Both comb regimes are therefore shallower than parametric resonance, and both lose the high-degree nonlinear capability that one-step prediction of a chaotic series requires. As any finite degree cap truncates the sum, these totals are lower bounds and the measurement establishes the ordering and the accessible depth rather than a saturated total.
 
 \RC \label{rev:1.2}To better understand why the frequency-comb regime underperforms relative to naive expectations, I would suggest that the authors examine two additional diagnostic quantities: the echo-state property (ESP) and the effective dimensionality of the reservoir state. The ESP can be quantified by measuring how quickly trajectories of the reservoir, initialized from different initial conditions but driven by the same input sequence, converge onto a common trajectory; faster convergence indicates a strong echo-state property. The effective dimensionality, on the other hand, characterizes how many independent degrees of freedom are actually being used within the 2048-dimensional reservoir state and can be measured by principal component analysis. In general, good computational performance requires both a strong echo-state property and sufficiently high dimensionality, but these two quantities are known to trade off against each other, so an appropriate balance between them is essential. I expect the frequency-comb regime to exhibit higher effective dimensionality than the parametric resonance regime. However, given its inferior computational performance, I would hypothesize that this comes at the cost of a degraded echo-state property. I recommend that the authors directly measure both quantities across the sub-threshold, parametric resonance, and comb regimes, as this would provide a clear mechanistic account of the observed performance differences.
 
-\AR This hypothesis is what we find. Both quantities are now measured across all four regimes in Sec~III of the supplemental material.
+\AR This hypothesis is what we find. Both quantities are now measured across all four regimes in Sec.~III of the supplementary material.
 
-Effective dimensionality is quantified by the participation ratio $D_{\text{eff}} = \left( \sum \lambda \right)^2 / \sum \lambda^2$ over the covariance eigenvalues of the standardized feature matrix. This requires no arbitrary variance cutoff and satisfies $1\le D_{\text{eff}} \le r$. The echo state property is measured by driving 12 replicas from different initial state conditions with an identical input sequence and fitting $\ln d(n) = \ln d(0) - \lambda n$ to the mean pairwise separation. The distance accounts for the $Z_2$ symmetry $(\psi_1,\psi_2)\rightarrow(\psi_1,-\psi_2)$ in Eqs.~(1) and(2) in the main text. Without this, parametric resonance could appear to violate the echo-state property because replicas may settle on opposite branches. These branches are equivalent and cannot be distinguished by the $Z_2$-invariant readout.
+Effective dimensionality is quantified by the participation ratio $D_{\text{eff}} = \left( \sum \lambda \right)^2 / \sum \lambda^2$ over the covariance eigenvalues of the standardized feature matrix. This requires no arbitrary variance cutoff and satisfies $1\le D_{\text{eff}} \le r$. The echo state property is measured by driving 12 replicas from different initial conditions with an identical input sequence and fitting $\ln d(n) = \ln d(0) - \lambda n$ to the mean pairwise separation. The distance accounts for the $Z_2$ symmetry $(\psi_1,\psi_2)\rightarrow(\psi_1,-\psi_2)$ in Eqs.~(1) and (2) in the main text. Without this, parametric resonance could appear to violate the echo-state property because replicas may settle on opposite branches. These branches are equivalent and cannot be distinguished by the $Z_2$-invariant readout.
 
 \begin{table}[htbp]
 	\centering
@@ -90,10 +90,10 @@ Effective dimensionality is quantified by the participation ratio $D_{\text{eff}
 		\textbf{} & \textbf{Sub-threshold} & \textbf{Parametric resonance} & \textbf{Coherent comb} & \textbf{Chaotic comb} \\
 		\hline
 		$\mathbf{D_{\mathrm{eff}}}$
-		& 1.915
-		& 2.770
-		& \textbf{7.147}
-		& \textbf{7.403} \\
+		& 1.91
+		& 2.77
+		& \textbf{7.15}
+		& \textbf{7.40} \\
 
 		\textbf{Components for 95\% / 99\% variance}
 		& 2 / 2
@@ -128,15 +128,15 @@ Effective dimensionality is quantified by the participation ratio $D_{\text{eff}
 	\end{tabular}
 \end{table}
 
-Effective dimensionality rises monotonically into the comb regimes, $1.915 \rightarrow 2.770 \rightarrow 7.147 \rightarrow 7.403$. On the other hand, the echo-state property collapses. Parametric resonance converges rapidly, with a rate of $4.03$ per symbol and an exponential fit of $R^2 = 0.974$. Neither comb regime shows clear convergence. The fitted rates of $2.5 \times 10^{-4}$ and $2.1 \times 10^{-4}$ per symbol have very low $R^2$ values of $0.011$ and $0.004$, respectively. Therefore, the exponential model does not describe the comb regimes well, and these rates should not be interpreted as slow convergence.
+Effective dimensionality rises monotonically into the comb regimes, $1.91 \rightarrow 2.77 \rightarrow 7.15 \rightarrow 7.40$. On the other hand, the echo-state property collapses. Parametric resonance converges rapidly, with a rate of $4.03$ per symbol and an exponential fit of $R^2 = 0.974$. Neither comb regime shows clear convergence. The fitted rates of $2.5 \times 10^{-4}$ and $2.1 \times 10^{-4}$ per symbol have very low $R^2$ values of $0.011$ and $0.004$, respectively. Therefore, the exponential model does not describe the comb regimes well, and these rates should not be interpreted as slow convergence.
 
-Below threshold, $\psi_1 \equiv -$, so the 1024 mode-2 columns are constant and dropped. This leaves 1024 active features. The low $D_{\mathrm{eff}}$ is not a consequence of having half as many active features. The constant mode-2 columns carry no variance and therefore do not contribute to the participation ratio. Instead, the low $D_{\mathrm{eff}}$ reflects the low dimensionality of the surviving mode-1 features: the first two components account for $60.7\%$ and $39.3\%$ of the variance, respectively, capturing $99.94\%$ in total and providing $D_{\mathrm{eff}} = 1.91$.
+Below threshold, $\psi_2 \equiv 0$, so the 1024 mode-2 columns are constant and are dropped. This leaves 1024 active features. The low $D_{\mathrm{eff}}$ is not a consequence of having half as many active features. The constant mode-2 columns carry no variance and therefore do not contribute to the participation ratio. Instead, the low $D_{\mathrm{eff}}$ reflects the low dimensionality of the surviving mode-1 features: the first two components account for $60.67\%$ and $39.27\%$ of the variance, respectively, capturing $99.94\%$ in total and providing $D_{\mathrm{eff}} = 1.91$.
 
 Between parametric resonance and the coherent comb, $D_{\mathrm{eff}}$ increases by $2.5\times$, while the number of components needed to capture $99\%$ of the variance increases by $8\times$. This difference shows that much of the additional dimensionality in the comb lies in weakly excited directions. These directions contribute little to the participation ratio and are strongly suppressed by the readout regularization. Thus, the combs provide richer spectra and higher dimensionality, but with poorer state convergence, which helps explain their lower prediction performance.
 
 \RC \label{rev:1.3}In Fig. 2(a) (and also in the caption of Fig. 1), the modulation depth is stated as $\Delta F = 0$. However, according to Eq. (3), $f\left(n\right)=F_{avg}+\Delta F\times\left(s\left(n\right)-0.5\right)$, setting $\Delta F = 0$ renders the drive amplitude f(n) completely independent of the input symbol s(n). Under this condition, no information about the input time series would be transmitted into the reservoir via the drive amplitude, which would make the subsequent prediction task meaningless. Since the manuscript nonetheless reports successful prediction, I suspect this is a typographical error.
 
-\AR The reviewer is correct that the label was wrong. We thank them for pointing this out. It was a mislabelling, not a typographical error. The input was always included in the drive.
+\AR The reviewer is correct that the label was wrong. We thank them for pointing this out. It was a mislabeling, not a typographical error. The input was always included in the drive.
 
 Throughout the study, we use the input-proportional encoding
 \begin{equation}
@@ -154,7 +154,7 @@ This correction also required us to revise the discussion of Fig.~2(a). Since $\
 
 \RC \label{rev:1.4}In constructing the reservoir feature vector, the authors include the discrete Fourier transform (DFT) of the sampled $\psi_1$ and $\psi_2$ trajectories, in addition to their time-domain trajectories. It is not entirely clear from the text whether this DFT is computed over the short trajectory sampled within a single symbol period of length $T_{\text{symbol}}$, or over the full time series spanning multiple symbol periods. I would ask the authors to explicitly clarify the exact time window over which this DFT is computed.
 
-\AR The transform is computed over a \textbf{single symbol period}, not the full record. We have clarified this in the methodology and in Sec.~IV of the supplemental material.
+\AR The transform is computed over a \textbf{single symbol period}, not the full record. We have clarified this in the methodology and in Sec.~IV of the supplementary material.
 
 For each symbol $n$ and mode $j=1,2$, the transform uses the same $N_v=512$ virtual-node samples as the time-domain features,
 \begin{equation}
@@ -168,7 +168,7 @@ The transform is applied to the \textbf{complex modal amplitudes} $\psi_1$ and $
 \end{equation}
 with the magnitude taken after the transform. This preserves intra-symbol phase information that is lost in $|\psi|^2$. Since $\psi_j$ is complex, its spectrum is two-sided and asymmetric, so the positive and negative frequency bins can contain different information. With $N_{\mathrm{FFT}}=N_v$, the full two-sided spectrum is retained. If the transform were instead applied to the sampled power, the signal would be real and its spectrum would be conjugate-symmetric, making the spectral features largely redundant with the time-domain features.
 
-\RC \label{rev:1.5}The governing equations (1) and (2) are presented without an explicit derivation. Given that these equations form the theoretical foundation of the entire study, I would recommend that the authors include a detailed, self-contained derivation in the supplemental material.
+\RC \label{rev:1.5}The governing equations (1) and (2) are presented without an explicit derivation. Given that these equations form the theoretical foundation of the entire study, I would recommend that the authors include a detailed, self-contained derivation in the supplementary material.
 
 \AR A complete, self-contained derivation of Eqs.~(1)--(2) in the main text has been added to Sec.~I of the supplementary material.
 
@@ -183,7 +183,7 @@ with the magnitude taken after the transform. This preserves intra-symbol phase 
 
 \AR We have performed both analyses and report the results in Sec.~IV of the supplementary material.
 
-For the ablation study, all readouts use the same reservoir realisation, trajectory, warm-up period, and train/test split. Only the input feature block is changed. Each case uses its own cross-validated regularization parameter. The results are summarized in Table~III of the supplementary material.
+For the ablation study, all readouts use the same reservoir realization, trajectory, warm-up period, and train/test split. Only the input feature block is changed. Each case uses its own cross-validated regularization parameter. The results are summarized in Table~III of the supplementary material.
 
 At parametric resonance, combining the time and spectral features gives a $7.35\times$ lower NMSE than the time features alone and a $4.5\times$ lower NMSE than the spectral features alone. This shows that the two feature blocks provide complementary information.
 
@@ -199,7 +199,7 @@ The effective degrees of freedom and the effect of regularization are discussed 
 
 Two trajectories with an initial separation of $d_0=10^{-7}$ are evolved, with the separation rescaled to $d_0$ after each interval. This value is well above the integration tolerance of $10^{-10}$ and sufficiently small for the linearized dynamics to remain valid.
 
-The classification uses $\lambda_{\max}>10^{-2}$ for chaos and $|\psi_2|<10^{-6}$ for the sub-threshold regime. The threshold is well above the $\sim10^{-3}$ scatter of finite-time estimates for a true zero exponent. The method is also validated by the sub-threshold case, where the measured exponent recovers the known value $-\gamma_1=-1$ to four decimal places. As an independent check, the normalized spectral entropy of the mode-2 power trace gives the same ordering of the three excited regimes.
+The classification uses $\lambda_{\max}>10^{-2}$ for chaos and $|\psi_2|<10^{-6}$ for the sub-threshold regime. The threshold is well above the $\sim10^{-3}$ scatter of finite-time estimates for a true zero exponent. The method is also validated by the sub-threshold case, where the measured exponent recovers the known value $-\gamma_1=-1$ to three decimal places. As an independent check, the normalized spectral entropy of the mode-2 power trace gives the same ordering of the three excited regimes.
 
 We also mapped $\lambda_{\max}$ over the full $(F_{\mathrm{avg}},\Delta_1)$ parameter plane. The results are given in Sec.~V of the supplementary material. Overall, $36.14\%$ of the grid is sub-threshold, $41.35\%$ is coherent, and $22.51\%$ exceeds the chaos threshold. The chaotic-comb region, where both the comb and chaos conditions are satisfied, covers $16.21\%$ of the grid and forms a connected region with $\lambda_{\max}$ ranging from $0.011$ to $1.731$.
 
@@ -222,7 +222,7 @@ At $\Delta_1=-4.5$, the Arnold-tongue threshold and the upper stability threshol
 	15.75 \leq F_{\mathrm{avg}} \leq 17.35.
 \end{equation}
 
-We tested 32 initial conditions at four amplitude scales, $\sigma\in\{0.01,0.1,1,8\}$, over 24 values of $F_{\mathrm{avg}}$ and compared constant and ramped startup protocols. Within the bistable range, at the default scale $\sigma=0.01$, the constant protocol selected the parametric branch in $0\%$ of trials, whereas the ramped protocol selected it in $100\%$ of trials. The $F_{\mathrm{avg}}$ values giving $50\%$ selection were $23.4$, $20.7$, $17.3$, and $11.5$ for $\sigma=0.01$, $0.1$, $1$, and $8$, respectively. Above $F_{\mathrm{avg}}\approx24.6$, both protocols agree because the trivial branch is no longer stable.
+We tested 32 initial conditions at four amplitude scales, $\sigma\in\{0.01,0.1,1,8\}$, over 24 values of $F_{\mathrm{avg}}$ and compared constant and ramped startup protocols. Within the bistable range, at the default scale $\sigma=0.01$, the constant protocol selected the parametric branch in $0\%$ of trials, whereas the ramped protocol selected it in $100\%$ of trials. The $F_{\mathrm{avg}}$ values giving $50\%$ selection were $23.4$, $20.7$, $17.3$, and $11.5$ for $\sigma=0.01$, $0.1$, $1$, and $8$, respectively. Above $F_{\mathrm{avg}}\approx24.6$, both protocols agree. This lies slightly below $f_{\mathrm{upper}}=26.03$ because the startup holds the drive constant at $F_{\mathrm{avg}}$ while the stability margin of the trivial branch vanishes as $f\rightarrow f_{\mathrm{upper}}$, so a 50-symbol startup escapes it just short of the analytic threshold.
 
 Within the bistable range, the constant protocol therefore leaves the reservoir on the trivial branch, where $\psi_2\equiv0$ and half of the features are inactive. We have consequently adopted the ramped protocol, which starts above $f_{\mathrm{upper}}$ and then decreases adiabatically to the target $F_{\mathrm{avg}}$.
 
@@ -240,7 +240,7 @@ The effective degrees of freedom,
 \begin{equation}
 	\nu(\lambda)=\operatorname{tr}(H)=\sum_i\frac{s_i^2}{s_i^2+\lambda},
 \end{equation}
-show that the effect of the fixed penalty depends strongly on the regime. At $\lambda=10^{-3}$, $\nu$ is 63.7 at parametric resonance but about 700 in the two comb regimes, despite having only 750 training samples. Cross-validation reduces $\nu$ to 30.4, 225.5, and 164.5 for parametric resonance, coherent comb, and chaotic comb, respectively. The corresponding test NMSEs improve from $1.33\times10^{-3}$ to $4.51\times10^{-4}$, from $6.67\times10^{-2}$ to $1.28\times10^{-2}$, and from $7.16$ to $6.36\times10^{-2}$. The full results are given in Sec.~VII of the supplementary material.
+show that the effect of the fixed penalty depends strongly on the regime. At $\lambda=10^{-3}$, $\nu$ is 63.7 at parametric resonance but about 700 in the two comb regimes, against only 750 training samples. Cross-validation reduces $\nu$ to 30.4, 225.5, and 164.5 for parametric resonance, coherent comb, and chaotic comb, respectively. The corresponding test NMSEs improve from $1.33\times10^{-3}$ to $4.51\times10^{-4}$, from $6.67\times10^{-2}$ to $1.28\times10^{-2}$, and from $7.16$ to $6.36\times10^{-2}$. The full results are given in Sec.~VII of the supplementary material.
 
 Importantly, the main result is unchanged. At their respective optima, the coherent comb still has a $28\times$ higher NMSE than parametric resonance. Across the full parameter sweep with per-point cross-validation, parametric resonance also outperforms the coherent comb by $8.0\times$. We therefore use cross-validation for the reported results.
 
@@ -248,11 +248,11 @@ Furthermore, LASSO can be advantageous because the feature vector contains many 
 
 \textbf{Numerical integration.} Eqs.~(1)--(2) in the main text are integrated as a real four-component system using an adaptive fifth-order Runge--Kutta method with relative tolerance $10^{-8}$ and absolute tolerance $10^{-10}$. The terminal state is carried forward between symbols. Since the step size is adaptive, we report the number of right-hand-side evaluations per symbol in Sec.~VIII of the supplementary material.
 
-We also compared the explicit method with DOP853, Radau, and BDF at the same tolerances. The implicit methods were between $2.28\times$ and $3.93\times$ more expensive, including for the chaotic comb. These results indicate that the system is not stiff in the regimes studied and that the adaptive explicit method is appropriate.
+We also compared the reference method with the explicit eighth-order DOP853 method and the implicit Radau and BDF methods at the same tolerances. Radau was between $2.28\times$ and $3.93\times$ more expensive, including for the chaotic comb, rather than permitting the larger steps a stiff system would allow. These results indicate that the system is not stiff in the regimes studied and that the adaptive explicit method is appropriate.
 
 \noindent\rule{\textwidth}{0.4pt}
 
-We thank both reviewers for their comments. The additional analysis helps explain why the comb regimes perform worse despite having richer spectra. They have higher dimensionality, but much of this dimensionality lies in weakly excited directions, while their state convergence is also substantially poorer.
+We thank both reviewers for their comments. The additional analysis helps explain why the comb regimes perform worse despite having richer spectra. They have higher dimensionality, but much of this dimensionality lies in weakly excited directions, while their state convergence fails entirely.
 
 Sincerely,\\
 Mahadev Sunil Kumar and Adarsh Ganesan
